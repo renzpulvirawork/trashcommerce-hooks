@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import WebFont from 'webfontloader';
+import Navbar from './components/layout/Navbar/Navbar'
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import HomePage from './views/Home/HomePage';
+import ProductSinglePage from './views/Product/ProductSinglePage';
 
 function App() {
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ['Inter', 'Playfair Display']
+      }
+    })
+  })
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route path="/product">
+            <ProductSinglePage />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
