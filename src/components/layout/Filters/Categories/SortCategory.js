@@ -20,15 +20,21 @@ export const SortCategory = ({ handleFilter }) => {
     new Array(dummyCategories.length).fill(false)
   );
 
+  const [deliverFilter, setDeliverFilter] = useState([]);
+
   const handleChecked = (position) => {
     const updatedCheckedState = updateCheckState(position, checkedState);
     setCheckedState(updatedCheckedState);
   };
 
   useEffect(() => {
-    const copyArr = [...dummyCategories];
-    copyArr.map((arr, index) => (arr.isChecked = checkedState[index]));
-    handleFilter(copyArr);
+    // let newArr = [];
+    // const copyArr = [...dummyCategories];
+    // copyArr.map((arr, index) => (arr.isChecked = checkedState[index]));
+    const validItems = dummyCategories.filter(
+      (item, index) => checkedState[index] === true
+    );
+    handleFilter(validItems);
   }, [checkedState]);
 
   return (
