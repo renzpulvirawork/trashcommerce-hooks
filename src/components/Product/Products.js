@@ -1,16 +1,17 @@
 import ProductItem from "./ProductItem";
+import * as S from "./Products.styles";
 
 export default function Products({ filterBy, priceBy, products }) {
   return (
-    <div>
-      {products.map((item) => (
+    <S.ProductGrid>
+      {products.map((item, ind) => (
         <ProductItem
-          key={item.id}
+          key={ind}
           name={item.name}
           category={item.category}
           price={item.price}
         />
       ))}
-    </div>
+    </S.ProductGrid>
   );
 }

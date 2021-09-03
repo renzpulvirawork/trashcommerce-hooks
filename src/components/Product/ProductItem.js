@@ -1,10 +1,21 @@
+import * as S from "./Products.styles";
+
 export default function ProductItem({ name, category, price }) {
   return (
-    <div className="Product-item">
+    <S.ProductItem>
+      <div className="product-image"></div>
       <h3>{name}</h3>
-      <p>{category}</p>
-      <p>{price}</p>
-      <button>Add to Cart</button>
-    </div>
+      <div className="category-cont">
+        <span>Category:</span>
+        <p>{category}</p>
+      </div>
+      <div className="price-cont">
+        <div>
+          <span>Price:</span>
+          <p>{price}</p>
+        </div>
+        <button>Add to Cart</button>
+      </div>
+    </S.ProductItem>
   );
 }

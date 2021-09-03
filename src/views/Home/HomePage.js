@@ -1,6 +1,9 @@
+import { useState } from "react";
+
 import * as SApp from "../../App.styles";
 import * as S from "./Homepage.styles";
 import Products from "../../components/Product/Products";
+import { SortCategory, SortPrice } from "../../components/layout/Filters";
 
 export default function HomePage() {
   const dummyProducts = [
@@ -41,36 +44,35 @@ export default function HomePage() {
     },
   ];
 
+  const [filterOptions, setFilterOptions] = useState({
+    category: [],
+    price: [],
+  });
+
+  const handleFilterCategory = (filter) => {
+    // let prevCat = [...filterOptions.category]
+    console.log(filter);
+  };
+
+  const handleFilterPrices = (filter) => {
+    console.log(filter);
+  };
+
   return (
     <SApp.GlobalContainer style={{ padding: "3em 0 6em 0" }}>
       <S.UIGrid>
         {/* Sidebar Column */}
         <div className="Sidebar">
-          <h3>Categories</h3>
-          <ul style={{ padding: "0", margin: "0", listStyle: "none" }}>
-            <li>
-              <label htmlFor="mobiles">
-                <input name="mobiles" type="checkbox" />
-                &nbsp; Mobiles
-              </label>
-            </li>
-            <li>
-              <label htmlFor="keyboards">
-                <input name="keyboards" type="checkbox" />
-                &nbsp; Keyboards
-              </label>
-            </li>
-            <li>
-              <label htmlFor="mice">
-                <input name="mice" type="checkbox" />
-                &nbsp; Mice
-              </label>
-            </li>
-          </ul>
+          <SortCategory handleFilter={handleFilterCategory} />
+          <SortPrice handleFilter={handleFilterPrices} />
         </div>
 
         {/* Products Column */}
-        <Products products={dummyProducts} />
+        <Products
+          products={dummyProducts}
+          filterByCategory={filterOptions.category}
+          filterByPrice={filterOptions.price}
+        />
       </S.UIGrid>
     </SApp.GlobalContainer>
   );
